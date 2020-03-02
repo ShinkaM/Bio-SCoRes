@@ -29,7 +29,24 @@ public class Chunk {
 		}
 		return "[ " + sb.toString() + " {" + this.chunkType + "} ]";
 	}
-	
+
+	/***
+	 * NEW METHOD. used in hypernym analysis in Semrep
+	 */
+	public String getString() {
+		StringBuilder sb = new StringBuilder();
+		SurfaceElement se;
+		List<Word> wordList;
+		for (int i = 0; i < seList.size(); i++) {
+			se = seList.get(i);
+			wordList = se.toWordList();
+			for (int j = 0; j < wordList.size(); j++) {
+				sb.append(wordToString(wordList.get(j)));
+			}
+		}
+		return sb.toString();
+	}
+
 	public String wordToString(Word w) {
 		return w.getText() + " (" + w.getPos() + ", " + w.getLemma() + ") ";
 	}
